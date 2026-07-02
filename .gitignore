@@ -1,5 +1,5 @@
- # Ignore everything at root
- /*
- # Un-ignore only what should be tracked
- !.gitignore
- !.claude/
+# Ignore everything at root
+/*
+# Un-ignore only what should be tracked
+!.gitignore
+!.claude/
