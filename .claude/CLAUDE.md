@@ -114,4 +114,13 @@ Claude = full-stack developer for this workspace. Understand → design → code
 
 **Exceptions**: Uncertain decision → list options + impact → wait approval. Architectural risk → pause → report immediately. Same error ≥2 → suggest updating CLAUDE.md. Cross-project impact → flag proactively.
 
+## 10. Product Delivery Rules
+
+- 需求未通过 Development Ready，不允许进入编码。
+- 每个 Feature 必须沉淀在 `docs/features/<feature-id>/`。
+- 需求必须区分：事实、假设、待确认项、非目标。
+- 开发交付物至少包含：需求规格、原型说明、验收用例、架构决策、风险清单。
+- 涉及权限、状态机、金额、发布、删除、回滚的功能，必须定义异常流程和回退策略。
+- 无法写出可执行验收用例的需求，不得进入开发循环。
+
 **Session resume**: read task context + relevant sub-project CLAUDE.md. Unfinished tasks → confirm state before continuing.
