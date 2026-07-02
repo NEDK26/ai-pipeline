@@ -16,7 +16,7 @@
 
 **Middleware**: MySQL `47.110.49.110:3306` (exbot_sys_test) exbot:Bot123!@# | Redis `47.110.49.110:6379` db1 bot123!@# | MQTT `47.110.49.110:1883` admin:wangfei123
 
-**MCP**: MySQL MCP in `RSP/.mcp.json`. All SQL ops via MCP tools, never raw connection.
+**MCP**: MySQL MCP in `.mcp.json`. All SQL ops via MCP tools, never raw connection.
 
 **Key docs**: `RSP/exbot-sys/sql/` (init SQL, naming: `{feature}_init.sql`) | `MedicalDelivery/` (requirements, detailed design, API guide, bug log) | `docs/` (system usage + module design docs)
 
