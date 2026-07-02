@@ -1,20 +1,5 @@
-# Created by niuniu on auto-init; edit freely.
-# OS junk
-.DS_Store
-Thumbs.db
-desktop.ini
-*~
-
-# Editors / tooling
-.idea/
-.vscode/
-
-# Heavy generated directories
-node_modules/
-__pycache__/
-*.log
-
-# Generated / tool artifacts
-.codegraph/
-test_screenshots/
-RSP/tests/
+ # Ignore everything at root
+ /*
+ # Un-ignore only what should be tracked
+ !.gitignore
+ !.claude/
