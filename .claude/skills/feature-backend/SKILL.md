@@ -37,16 +37,34 @@ disable-model-invocation: true
 
 ## 严格边界
 
-可以：新增/修改当前 Feature 相关后端代码、测试和数据迁移；更新 API 契约和联调说明；执行构建/测试/静态检查命令。
+可以：新增/修改当前 Feature 相关后端代码、测试和数据迁移；执行构建/测试/静态检查命令。
 
 不可以：改变产品范围；自行修改关键业务规则；绕开已有领域模型或状态机；删断言/跳测试/弱化校验以通过测试；修改无关模块；自动提交/推送/发布/操作生产数据库；将前端校验视为后端校验的替代品。
+
+**API 契约修改权限：**
+
+| 契约状态 | 后端权限 |
+|----------|----------|
+| **Draft** | 可直接修改 `api-contract.md`，更新 Contract Version，通知前端 |
+| **Frozen** | 禁止静默修改。须创建 `docs/features/$feature_id/contract-changes/CCR-XXX.md`（模板见 `templates/contract-change-request.md`），说明影响页面、字段、错误码、验收用例，前后端共同确认后更新契约并标记 CCR 为 Applied |
+| **Superseded** | 指向新契约版本，不修改已归档版本 |
+
+冻结后单方面改契约 → 阻塞项，`backend-reviewer` 判定为 Changes Required。
 
 ## 第一步：建立实现映射
 
 创建或更新 `docs/features/<feature-id>/backend-handoff.md`，填充 `templates/backend-handoff.md` 中的"规格→实现映射"表。
 每个重要业务规则必须有明确后端落点。禁止出现"前端已限制，因此后端无需校验"。
 
-## 第二步：先定义后端设计
+## 第二步：检查契约状态
+
+读取 `docs/features/<feature-id>/api-contract.md` 顶部 Metadata，确认 `Status` 字段：
+
+- **Draft**：继续第三步，可以定义和调整 API 契约。
+- **Frozen**：按现有契约实现。如需变更 → 创建 `docs/features/<feature-id>/contract-changes/CCR-<feature-id>-<序号>.md`，填写影响分析，前后端确认后更新契约。
+- **Superseded**：定位新契约版本，按新版本执行。
+
+## 第三步：先定义后端设计
 
 修改代码前确认：
 
@@ -56,13 +74,13 @@ disable-model-invocation: true
 
 **API 契约**：请求路径与方法、DTO、VO、参数校验、权限要求、成功/错误响应、分页/筛选/排序/时间字段口径、幂等要求。
 
-## 第三步：按 TDD 实现
+## 第四步：按 TDD 实现
 
 优先使用项目已有测试框架与风格。实现顺序：为关键业务规则写失败测试 → 实现最小可通过业务逻辑 → 运行测试 → 重构 → 继续下一条。
 
 测试覆盖要求见 `checklists/backend-test-coverage.md`。
 
-## 第四步：实现要求
+## 第五步：实现要求
 
 **Controller**：只负责请求接收、DTO 校验、权限入口和统一响应；不写复杂业务规则；不直接调用 Mapper；不返回 Entity；不暴露内部异常。
 
@@ -74,12 +92,12 @@ disable-model-invocation: true
 
 **高风险操作权限与审计**：发布、停止发布、回滚、删除、权限调整、强制更新、金额变更——必须后端权限校验 + 状态前置校验 + 操作影响范围明确 + 审计记录完整 + 必要时二次确认参数或幂等键 + 可追踪操作人/时间/对象/结果。
 
-## 第五步：测试与联调
+## 第六步：测试与联调
 
 执行项目真实测试命令，不要猜命令。测试覆盖要求见 `checklists/backend-test-coverage.md`。
 在 `backend-handoff.md` 中补充：已实现接口、请求参数、返回字段、错误码、空值与默认值语义、分页与排序规则、接口是否已可供前端联调、未完成或有风险的接口。
 
-## 第六步：完成标准
+## 第七步：完成标准
 
 - [ ] 每条关键业务规则都有后端实现落点
 - [ ] 状态流转不可被直接绕过

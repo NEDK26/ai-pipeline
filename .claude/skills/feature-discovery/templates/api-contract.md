@@ -1,5 +1,25 @@
 # $feature_id：API 契约
 
+## Metadata
+
+| 字段 | 值 |
+|------|-----|
+| Feature ID | $feature_id |
+| Contract Version | 1.0.0 |
+| Status | Draft |
+| Last Updated | <yyyy-mm-dd> |
+| Change Requests | — |
+
+**Status 说明：**
+
+| Status | 含义 | 后端行为 | 前端行为 |
+|--------|------|----------|----------|
+| **Draft** | 契约未冻结，可能调整 | 可修改 api-contract.md，更新版本号 | 不开始实现，等待 Frozen |
+| **Frozen** | 契约已锁定，前后端联调基准 | 禁止静默修改。变更须创建 CCR，双方确认后生效 | 可基于 Frozen 版本实现 |
+| **Superseded** | 已被新版本替代 | 指向新版本，归档当前版本 | 迁移到新版本 |
+
+---
+
 ## API 契约权威来源
 
 **开发设计阶段**：

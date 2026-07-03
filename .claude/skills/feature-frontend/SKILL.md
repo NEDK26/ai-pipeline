@@ -20,6 +20,14 @@ disable-model-invocation: true
 
 规格包必须已通过 requirements-reviewer 审查（handoff.md 状态为 Ready 或 Ready with Risks）。
 
+**契约状态检查：** 读取 `docs/features/$feature_id/api-contract.md` 顶部 Metadata：
+
+| Status | 前端行为 |
+|--------|----------|
+| **Draft** | 不开始实现。提示后端先冻结契约。可提前阅读 prototype.md 做设计准备 |
+| **Frozen** | 基于本版本实现。发现字段不足/错误码缺失 → 标记为 Contract Mismatch，要求后端创建 CCR |
+| **Superseded** | 定位新契约版本，按新版本执行 |
+
 ## 可选协作
 
 若已安装，可手动叠加：
@@ -32,7 +40,9 @@ disable-model-invocation: true
 
 可以做：创建和修改 Vue 组件/页面/路由/API 调用/类型定义。
 
-不可以：修改后端代码或数据库；修改 API 契约（只能按 `api-contract.md` 实现）；跳过 prototype.md 定义的状态和交互；自由发挥 UI 样式。
+不可以：修改后端代码或数据库；修改 API 契约（只能按 `api-contract.md` Frozen 版本实现）；跳过 prototype.md 定义的状态和交互；自由发挥 UI 样式。
+
+发现 Frozen 契约的字段、类型、错误码与实际接口不一致 → 不猜测，不自行适配。标记为 `Contract Mismatch`，要求后端通过 CCR（Contract Change Request）流程解决。
 
 ## 第一步：读取规格包与项目规范
 

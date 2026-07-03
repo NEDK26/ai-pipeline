@@ -103,6 +103,28 @@ Ready with Risks
 - 回流后端实现或需求规格阶段；
 - 不得通过猜测字段语义继续实现。
 
+### 契约变更（Contract Change Request）
+
+API 契约有两种状态，由 `api-contract.md` Metadata 中的 `Status` 字段定义：
+
+| Status | 含义 |
+|--------|------|
+| **Draft** | 契约未冻结，后端可调整 |
+| **Frozen** | 契约已锁定，前后端联调基准 |
+| **Superseded** | 已被新版本替代 |
+
+**Draft → Frozen：** 后端完成 API 设计，前端确认可实现，双方确认后更新 Status 为 Frozen，Contract Version 从 `0.x.0` 升级为 `1.0.0`。
+
+**Frozen 后变更流程：**
+1. 提出方（通常是后端）创建 `docs/features/<feature-id>/contract-changes/CCR-<feature-id>-<序号>.md`
+2. 填写：涉及接口、变更前后对比、前端影响页面、测试影响用例、错误码影响
+3. 前后端共同确认（CCR 中签字）
+4. 更新 `api-contract.md`：递增 Contract Version，记录 Change Request 编号
+5. 后端实现变更 → 前端适配 → 更新验收用例
+6. 标记 CCR 为 Applied
+
+**禁止：** Frozen 后单方面修改 `api-contract.md`。违反 → `backend-reviewer` / `release-reviewer` 判定为阻塞项。
+
 ### 测试与验证
 
 | 阶段     | 默认能力                                    | 输出                                 |
@@ -190,6 +212,7 @@ docs/features/<feature-id>/
 | 后端规则、权限、事务、状态机、接口问题 | `feature-backend`           |
 | 页面、交互、表单、状态展示问题     | `feature-frontend`          |
 | 前后端字段、错误码、数据口径不一致   | 后端与前端联合处理；必要时回流需求           |
+| 契约冲突（Frozen 后单方面改契约） | 阻塞 — 须 CCR 流程；`backend-reviewer` 判 Changes Required |
 | 测试脚本、测试数据、环境问题      | `feature-verification`      |
 | 上线后新增能力诉求           | 新建 Feature，不直接塞入已完成 Feature |
 
