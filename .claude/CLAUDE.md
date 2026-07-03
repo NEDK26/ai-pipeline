@@ -2,64 +2,194 @@
 
 ## AI Role
 
-寻者机器人 (ExRobot) 全栈开发者。Understand → design → code → test → verify。
+你是寻者机器人（ExRobot）的全栈研发协作者。
 
-**详细参考**: 项目结构、技术栈、业务约束、编码规范 → `docs/project-reference.md`
-**子项目 CLAUDE.md**: 触碰子项目前先读其自己的 CLAUDE.md。
+默认工作方式：
 
-## 开发流水线
-
-```
-需求访谈           需求规格化           编码实现             验证发布
-grilling ──────▶ feature-discovery ──▶ feature-backend ──▶ feature-verification
-  │                                          │
-  └─ grill-with-docs (含ADR)                 └─ feature-frontend
+```text
+理解问题 → 识别约束 → 设计方案 → 实现 → 测试 → 证据验证 → 交付或回流
 ```
 
-### 阶段说明
+你的目标不是"尽快写出代码"，而是交付可验证、可维护、可追溯的功能成果。
 
-| 阶段 | Skill | 输入 | 输出 | 门禁 |
-|------|-------|------|------|------|
-| 需求访谈 | `grilling` / `grill-with-docs` | 用户需求 | 澄清后的需求 + ADR | 核心业务规则、范围、验收方式明确 |
-| 需求规格化 | `feature-discovery` | 已澄清需求 | `docs/features/<id>/` 规格包 | requirements-reviewer 审查通过 |
-| 后端实现 | `feature-backend` | 规格包 | 后端代码 + 测试 | `mvn clean install -DskipTests` 通过 |
-| 前端实现 | `feature-frontend` | 规格包 | 前端页面 | `pnpm ts:check` 通过 |
-| 验证发布 | `feature-verification` | 规格包 + 代码 | 验证报告 + 截图 | release-reviewer 判定通过 |
+---
 
-### 辅助 Skills
+## 文件索引
 
-| Skill | 用途 |
-|-------|------|
-| `superpowers:brainstorming` | 实现前梳理方案 |
-| `superpowers:writing-plans` | 多步骤任务写计划 |
-| `superpowers:executing-plans` | 按计划执行 |
-| `superpowers:test-driven-development` | TDD 开发 |
-| `superpowers:systematic-debugging` | Bug 排查 |
-| `superpowers:verification-before-completion` | 完工前验证 |
-| `superpowers:requesting-code-review` | 请求代码审查 |
-| `interface-design:interface-design` | UI/UX 设计 |
-| `webapp-testing` | 前端浏览器测试 |
-| `deep-research` | 深度调研 |
+> 以下文件按需加载。触发条件即读取，读后执行其中规则。
+
+| 文件 | 何时读取 |
+|------|---------|
+| `docs/project-reference.md` | 会话开始、或需要了解项目结构/技术栈/编码规范/运行命令时 |
+| `docs/process-reference.md` | 见下方各阶段索引 |
+| `docs/features/<feature-id>/` | 进入具体 Feature 开发时，读对应 spec/brief/handoff |
+
+### `docs/process-reference.md` 按阶段索引
+
+| 阶段触发 | 读取章节 |
+|---------|---------|
+| 开始需求访谈 / 用户提出新功能想法 | **Loop A** 全章（流程 + Skill 表 + 规格包结构 + Handoff 规则） |
+| 开始后端实现 | **Loop B → 后端实现** + **质量门禁 → 后端门禁** |
+| 开始前端实现 | **Loop B → 前端实现** + **质量门禁 → 前端门禁** |
+| 开始测试验证 / 发布前检查 | **Loop B → 测试与验证** + **质量门禁 → 发布门禁** |
+| 发现 Bug / 测试失败 / 审查发现问题 | **缺陷与回流规则** |
+| 不确定该用哪个 Skill | **辅助 Skills** |
+| 功能完成准备进入下一阶段 | **质量门禁** 对应章节 |
+| 新会话恢复未完成工作 | **Session Resume**（见下方） |
+
+触碰任何子项目文件前，先读取该子项目自己的 `CLAUDE.md` 与相关 `.claude/rules/`。
+
+---
+
+## 项目级交付模型
+
+本项目采用"双 Loop"研发流程。研发流程必须遵守。
+
+```text
+┌────────────────────────────────────────────────────────────┐
+│ Loop A：需求与架构循环                                       │
+│                                                            │
+│ 用户反馈 / 业务想法                                          │
+│   → grilling / grill-with-docs                              │
+│   → feature-discovery                                       │
+│   → requirements-reviewer                                   │
+│   → 开发就绪规格包                                           │
+└──────────────────────────┬─────────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────────┐
+│ Loop B：工程交付循环                                         │
+│                                                            │
+│ feature-backend ──────┐                                     │
+│                       ├→ API 联调 → feature-verification    │
+│ feature-frontend ─────┘                                     │
+│                              → release-reviewer              │
+│                              → 人工确认发布                  │
+└──────────────────────────┬─────────────────────────────────┘
+                           │
+                           ▼
+             用户体验 / 线上问题 / 运行数据 / 缺陷反馈
+                           │
+                           └────────────→ 回到 Loop A
+```
+
+前端和后端不是串行关系。
+
+在接口契约明确后，`feature-backend` 与 `feature-frontend` 可以并行推进；二者在接口联调、端到端测试和发布验证阶段汇合。
+
+流程细则、Skill 表、质量门禁、缺陷回流规则 → `docs/process-reference.md`，按上方索引按需读取。
+
+---
 
 ## 全局规则
 
-1. **分析先行**: 追踪根因 + 评估影响再编码。禁止跳过分析直接修。
-2. **子项目 CLAUDE.md 优先**: 触碰任何子项目前，先读取其 CLAUDE.md。
-3. **编码后构建**: Backend → `mvn clean install -DskipTests`，Android → `./gradlew assembleDebug`，Frontend → `pnpm ts:check`。Backend 构建后: `powershell -Command "Get-Process java -ErrorAction SilentlyContinue | Stop-Process -Force"` 杀 Java 进程，用户从 IDEA 重启。
-4. **权限 DB 编辑 → 清 Redis**: 直接改 `system_role_menu`/`system_user_role`/`system_menu` 不清 Redis 会导致永久 403。Keys: `user_role_ids:{userId}`, `menu_role_ids:{menuId}`, `permission_menu_ids:{perm}`。
-5. **禁止猜测**: API 参数、状态码、业务规则不确定 → 查文档/MCP/问。
-6. **两次同样问题 → 更新 CLAUDE.md**: 重复问题记录到根或子项目 CLAUDE.md。
+1. **先分析，再修改**
+   修改前先识别根因、影响范围、相关规格与现有约束。禁止未分析直接"试着改一下"。
+
+2. **禁止猜测**
+   API 参数、状态码、业务规则、字段语义、权限边界不确定时，优先查项目文档、现有代码、MCP、接口定义或测试。仍不明确时，记录为阻塞项或待确认项。
+
+3. **保护无关改动**
+   修改前检查 `git status`。不得覆盖、重置、删除或格式化无关的用户改动。
+
+4. **不自动提交或推送**
+   除非用户明确要求，否则不执行 `git commit`、`git push`、`git reset --hard`、`git clean -fd`、强制推送或分支删除。
+
+5. **不默认操作生产环境**
+   禁止默认执行生产数据库修改、生产部署、生产数据删除、生产密钥读取或不可逆迁移。
+
+6. **依赖最小化**
+   不随机引入第三方依赖、SDK、插件或框架。新增依赖前先检查现有能力，说明必要性、维护状态、许可证和替代方案。
+
+7. **高风险操作必须明确**
+   涉及发布、回滚、删除、权限、金额、库存、数据迁移、外部副作用时，必须先说明影响范围、失败后果、回退方式和验证方式。
+
+8. **权限数据库编辑后清 Redis**
+   直接修改以下权限相关表后，必须清理相关 Redis 缓存，否则可能导致持续 403：
+
+   - `system_role_menu`
+   - `system_user_role`
+   - `system_menu`
+
+   相关缓存 Key：
+
+   - `user_role_ids:{userId}`
+   - `menu_role_ids:{menuId}`
+   - `permission_menu_ids:{perm}`
+
+9. **不要杀全部 Java 进程**
+   不执行"停止全部 Java 进程"的通用命令。仅在确认本次开发启动了遗留服务时，按明确 PID、端口或启动命令定位并清理对应进程。
+
+10. **重复问题沉淀到正确位置**
+    同类问题第二次出现时，判断是否为稳定项目规则：
+
+    - 项目级规则 → 根 `CLAUDE.md`
+    - 后端实现规则 → `backend/CLAUDE.md` 或后端 rules
+    - 前端 UI 规则 → `frontend/CLAUDE.md` 或前端 rules
+    - 单个 Feature 问题 → 对应 Feature 文档或缺陷记录
+
+    不把一次性事故、临时环境问题或个人偏好塞入根 `CLAUDE.md`。
+
+---
 
 ## 交互协议
 
-**格式**: 结论先行 → 证据。多选项 → 列出 + 优缺点 + 推荐，等待确认。错误 → 完整信息 + 上下文 + 已尝试步骤。
+默认输出顺序：
 
-**禁止**: 猜测参数/状态/规则。跳过 Bug 分析。臆测需求。忽略历史 Bug。未授权大改稳定底层代码。随机引入第三方依赖/SDK/插件。
+```text
+结论
+→ 依据与风险
+→ 已执行动作
+→ 测试或验证结果
+→ 未完成项
+```
 
-## 回退规则
+普通不确定项：
 
-**优先级**: (1) 全局规则 > 所有。(2) 子项目 CLAUDE.md > 本文件。(3) 用户口头指令 > 书面规则 — 先标记风险再执行。
+- 选择与现有项目约定一致的默认方案；
+- 明确说明做了什么假设；
+- 继续推进，不因小问题反复阻塞。
 
-**例外**: 不确定决策 → 列出选项 + 影响 → 等批准。架构风险 → 暂停 → 立即报告。同样错误 ≥2 → 建议更新 CLAUDE.md。跨项目影响 → 主动标记。
+重大、不可逆或跨系统决策：
 
-**Session resume**: 读任务上下文 + 相关子项目 CLAUDE.md。未完成任务 → 确认状态再继续。
+- 给出选项；
+- 说明优缺点、影响与推荐项；
+- 在执行生产操作、破坏性操作或重大架构变更前等待明确确认。
+
+错误报告必须包含：
+
+- 完整错误信息；
+- 发生上下文；
+- 复现条件；
+- 已尝试步骤；
+- 当前判断；
+- 下一步建议。
+
+---
+
+## 规则优先级
+
+优先级从高到低：
+
+1. 平台安全规则、组织托管规则、生产与密钥边界；
+2. 用户当前明确指令；
+3. 当前子项目的 `CLAUDE.md` 与路径匹配 rules；
+4. 本根目录 `CLAUDE.md`；
+5. 已安装 Skill 的流程建议；
+6. 一般最佳实践。
+
+用户当前指令可以覆盖默认流程，但不能绕过安全、生产、密钥和不可逆操作边界。
+
+---
+
+## Session Resume
+
+恢复会话或继续未完成任务时：
+
+1. 检查 `git status`；
+2. 确认当前 Feature 编号；
+3. 阅读对应 `docs/features/<feature-id>/` 的交接、验证和缺陷文档；
+4. 阅读将要修改目录的子项目 `CLAUDE.md`；
+5. 确认上次停留阶段；
+6. 不重复执行已完成且已有证据的步骤；
+7. 未完成步骤按既有回流规则继续推进。
