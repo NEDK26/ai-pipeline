@@ -55,7 +55,7 @@ argument-hint: '<feature-id> "<feature-name>"'
 
 ### 第一步：读取与核验上下文
 
-依次读取：根目录 CLAUDE.md → CONTEXT.md / CONTEXT-MAP.md → `docs/adr/` → 已有 PRD/Issue/会议纪要 → 相关代码/接口/数据模型 → 当前会话已确认结论。
+依次读取：`.claude/CLAUDE.md` → CONTEXT.md / CONTEXT-MAP.md → `docs/adr/` → 已有 PRD/Issue/会议纪要 → 相关代码/接口/数据模型 → 当前会话已确认结论。
 
 区分四类信息：
 

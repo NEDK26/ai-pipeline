@@ -35,7 +35,7 @@ skills:
 
 开始前必须读取：
 
-1. 根目录 `CLAUDE.md`；
+1. `.claude/CLAUDE.md`；
 2. `docs/features/<feature-id>/spec.md`；
 3. `docs/features/<feature-id>/acceptance-tests.md`；
 4. `docs/features/<feature-id>/architecture-impact.md`；

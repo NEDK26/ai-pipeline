@@ -60,7 +60,7 @@ argument-hint: '<feature-id> [scope]'
 
 优先读取：
 
-1. 根目录 `CLAUDE.md`；
+1. `.claude/CLAUDE.md`；
 2. `docs/features/$feature_id/brief.md`；
 3. `docs/features/$feature_id/spec.md`；
 4. `docs/features/$feature_id/prototype.md`；
@@ -74,7 +74,7 @@ argument-hint: '<feature-id> [scope]'
 
 必须从以下来源确认：
 
-* `CLAUDE.md`；
+* `.claude/CLAUDE.md`；
 * `package.json`；
 * `pom.xml`、Gradle 配置或 Makefile；
 * CI 配置；
