@@ -10,12 +10,12 @@ disable-model-invocation: true
 
 # Feature Verification：功能验证与发布门禁
 
-当前功能：$feature_id
-验证范围：$scope
+当前功能：<feature-id>
+验证范围：<scope>
 
 ## 目标
 
-对 `$feature_id` 生成可追溯、可复现、可审查的验证结论。
+对 `<feature-id>` 生成可追溯、可复现、可审查的验证结论。
 
 链路：验收用例 → 测试执行 → 证据（截图/日志/Trace） → 缺陷与风险 → 发布质量结论。
 
@@ -30,12 +30,12 @@ disable-model-invocation: true
 ## 第一步：读取规格包与现有测试
 
 1. `.claude/CLAUDE.md`
-2. `docs/features/$feature_id/brief.md`
-3. `docs/features/$feature_id/spec.md`
-4. `docs/features/$feature_id/prototype.md`
-5. `docs/features/$feature_id/acceptance-tests.md`
-6. `docs/features/$feature_id/architecture-impact.md`
-7. `docs/features/$feature_id/handoff.md`
+2. `docs/features/<feature-id>/brief.md`
+3. `docs/features/<feature-id>/spec.md`
+4. `docs/features/<feature-id>/prototype.md`
+5. `docs/features/<feature-id>/acceptance-tests.md`
+6. `docs/features/<feature-id>/architecture-impact.md`
+7. `docs/features/<feature-id>/handoff.md`
 8. 当前功能相关的后端、前端、接口与测试代码
 9. 项目已有测试配置、CI 配置、Playwright 配置
 
@@ -43,7 +43,7 @@ disable-model-invocation: true
 
 ## 第二步：生成验收可追溯矩阵
 
-创建或更新 `docs/features/$feature_id/test-traceability.md`，使用 `templates/test-traceability.md`。
+创建或更新 `docs/features/<feature-id>/test-traceability.md`，使用 `templates/test-traceability.md`。
 每条验收用例映射到至少一种验证方式。验证层分类和覆盖规则见模板文件。
 
 关键规则：高风险业务规则必须有 Backend Unit/Integration 覆盖；主用户路径必须有 E2E 覆盖；仅用截图不能证明业务逻辑正确；关键用例无覆盖 = Coverage Gap ≠ Ready。
@@ -62,7 +62,7 @@ disable-model-invocation: true
 
 ## 第五步：生成验证结论
 
-创建或更新 `docs/features/$feature_id/verification-report.md`，使用 `templates/verification-report.md`。
+创建或更新 `docs/features/<feature-id>/verification-report.md`，使用 `templates/verification-report.md`。
 报告必须包含全部 6 个章节：验证范围、测试结果摘要、验收覆盖情况、关键证据、缺陷与风险、发布质量结论。
 
 ## 发布门禁
@@ -73,7 +73,7 @@ disable-model-invocation: true
 
 完成后只输出：
 
-## $feature_id：验证结论
+## <feature-id>：验证结论
 
 ### 结论
 Ready / Ready with Risks / Blocked
