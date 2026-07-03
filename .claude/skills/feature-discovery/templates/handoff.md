@@ -5,14 +5,14 @@
 - **Feature ID**: $feature_id
 - **Spec Version**: v0.1
 - **API Contract Version**: v0.1
-- **Status**: Ready / Ready with Risks / Blocked
+- **Status**: Drafted / Pending Review / Blocked
 - **Scope Freeze**: Yes / No
 - **Requirements Review**: docs/features/$feature_id/reviews/requirements-review.md
 - **Accepted Risks**:
 - **Last Updated**: YYYY-MM-DD
 
 ## 1. 当前结论
-- Ready / Ready with Risks / Blocked；
+- Drafted / Pending Review / Blocked；
 - 结论理由；
 - 最后更新日期。
 

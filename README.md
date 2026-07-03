@@ -130,7 +130,7 @@ node scripts/validate-pipeline.mjs
 #   architecture-impact.md, api-contract.md, handoff.md
 ```
 
-`handoff.md` 结论必须为 `Ready` 或 `Ready with Risks`，才能进入 Loop B。
+`handoff.md` 输出 `Drafted` / `Pending Review` 后，由 `requirements-reviewer` 审查。审查结论不是 `Blocked` 即可进入 Loop B。
 
 ### Loop B：后端
 

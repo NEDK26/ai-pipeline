@@ -1,6 +1,6 @@
 ---
 paths:
-  - "docs/features/**/architecture.md"
+  - "docs/features/**/architecture-impact.md"
   - "docs/adr/**/*.md"
 ---
 

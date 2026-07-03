@@ -106,15 +106,14 @@ docs/features/$feature_id/
 1. 是否把猜测写成事实
 2. 是否存在无法测试的业务规则
 3. 是否存在没有验收用例的用户故事
-4. 审查报告是否已写入 `reviews/` 目录（由 requirements-reviewer 完成）
-5. 是否存在没有页面或接口落点的关键流程
-6. 是否存在没有权限定义的高风险操作
-7. 是否存在没有失败处理的状态转换
-8. 是否存在没有来源或口径的数据指标
-9. 是否存在被遗漏的架构约束
-10. Loop B 是否仍需要猜测关键业务决策
+4. 是否存在没有页面或接口落点的关键流程
+5. 是否存在没有权限定义的高风险操作
+6. 是否存在没有失败处理的状态转换
+7. 是否存在没有来源或口径的数据指标
+8. 是否存在被遗漏的架构约束
+9. Loop B 是否仍需要猜测关键业务决策
 
-全部通过 → `Ready` | 非阻塞风险 → `Ready with Risks` | 关键未决问题 → `Blocked`
+全部通过 → `Drafted` | 非阻塞风险 → `Pending Review` | 关键未决问题 → `Blocked`
 
 ## 最终回复格式
 
@@ -122,7 +121,7 @@ docs/features/$feature_id/
 ## $feature_id：规格包完成情况
 
 ### 结论
-Ready / Ready with Risks / Blocked
+Drafted / Pending Review / Blocked
 
 ### 已创建或更新的文件
 - 文件路径：一句话说明

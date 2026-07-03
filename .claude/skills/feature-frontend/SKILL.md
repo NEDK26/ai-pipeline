@@ -18,7 +18,10 @@ disable-model-invocation: true
 
 ## 前置条件
 
-规格包必须已通过 requirements-reviewer 审查（handoff.md 状态为 Ready 或 Ready with Risks）。
+进入 Loop B 条件（三项全部满足）：
+1. `docs/features/$feature_id/handoff.md` 存在；
+2. `docs/features/$feature_id/reviews/requirements-review.md` 存在；
+3. 审查结论不是 `Blocked`。
 
 **契约状态检查：** 读取 `docs/features/$feature_id/api-contract.md` 顶部 Metadata：
 

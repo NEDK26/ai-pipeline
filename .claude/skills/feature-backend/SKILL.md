@@ -33,7 +33,12 @@ disable-model-invocation: true
 6. 当前 Feature 相关的已有代码、接口、数据库表、枚举和测试
 7. 项目已有构建、测试、迁移和代码规范配置
 
-若 `handoff.md` 结论不是 `Ready` 或 `Ready with Risks`：不写业务代码，不自行补全需求，列出阻塞项，建议回流到 `feature-discovery` 或 `requirements-reviewer`。
+进入 Loop B 条件（三项全部满足）：
+1. `docs/features/<feature-id>/handoff.md` 存在；
+2. `docs/features/<feature-id>/reviews/requirements-review.md` 存在；
+3. 审查结论不是 `Blocked`。
+
+不满足任一条件 → 不写业务代码，列出阻塞项，建议回流到 `feature-discovery` 或 `requirements-reviewer`。
 
 ## 严格边界
 

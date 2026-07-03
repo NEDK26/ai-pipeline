@@ -19,6 +19,7 @@
 → 原型与关键用户路径
 → 验收用例
 → 架构影响与 API 契约
+→ 开发交接（Drafted / Pending Review / Blocked）
 → 需求审查
 → Ready / Ready with Risks / Blocked
 ```
@@ -28,7 +29,7 @@
 | 阶段    | 默认能力                           | 输出                                 |
 | ----- | ------------------------------ | ---------------------------------- |
 | 需求访谈  | `grilling` 或 `grill-with-docs` | 已确认事实、假设、待确认项、关键决策                 |
-| 需求规格化 | `feature-discovery`            | Feature 规格包                        |
+| 需求规格化 | `feature-discovery`            | Feature 规格包（Drafted / Pending Review / Blocked） |
 | 需求审查  | `requirements-reviewer`        | Ready / Ready with Risks / Blocked |
 
 只有 `/skills` 中实际存在的 Skill 才能调用。
@@ -50,14 +51,15 @@ docs/features/<feature-id>/
 └─ handoff.md
 ```
 
-`handoff.md` 只有在以下结论之一时，才允许进入 Loop B：
+进入 Loop B 条件（三项全部满足）：
 
-```text
-Ready
-Ready with Risks
-```
+1. `handoff.md` 存在；
+2. `reviews/requirements-review.md` 存在；
+3. 审查结论不是 `Blocked`。
 
-若为 `Blocked`：
+`feature-discovery` 输出 `Drafted` 或 `Pending Review` 后，由 `requirements-reviewer` 独立审查并判定 `Ready` / `Ready with Risks` / `Blocked`。只有 Agent 拥有 `Ready` 状态的所有权。
+
+若审查结论为 `Blocked`：
 
 - 不编写关键业务代码；
 - 不自行猜测业务规则；
