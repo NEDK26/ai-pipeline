@@ -38,7 +38,7 @@ tools: Read, Glob, Grep, Write, Edit
 - `handoff.md` — 开发交接说明
 
 同时读取：
-- 根目录 `.claude/CLAUDE.md`
+- `.claude/CLAUDE.md`
 - `.claude/rules/product-docs.md`
 - `.claude/rules/architecture-docs.md`
 
