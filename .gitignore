@@ -4,5 +4,7 @@
 !.gitignore
 !.claude/
 !/docs/
+!/.github/
+!/scripts/
 # Re-ignore files with actual secrets
 docs/project-reference.md
