@@ -1,6 +1,6 @@
 ---
 name: feature-frontend
-description: 根据功能规格包实现企业级前端界面。基于 Vue 3 + Element Plus + TypeScript，使用 interface-design 进行设计审查。适用于功能开发阶段的前端实现。
+description: 根据功能规格包实现企业级前端界面。
 argument-hint: '<feature-id> [slice]'
 arguments:
   - feature_id
@@ -22,7 +22,11 @@ disable-model-invocation: true
 
 ## 可选协作
 
-可叠加 Skill：`interface-design`（设计审查）、`webapp-testing`（浏览器验证）。详见 `references/collaboration-capabilities.md`。
+若已安装，可手动叠加：
+- `interface-design`：实现前设计审查
+- `webapp-testing`：浏览器路径、截图、Console、网络验证
+
+详见 `references/collaboration-capabilities.md`。
 
 ## 严格边界
 
