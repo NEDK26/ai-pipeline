@@ -1,7 +1,11 @@
 ---
 name: feature-frontend
 description: 根据功能规格包实现企业级前端界面。基于 Vue 3 + Element Plus + TypeScript，使用 interface-design 进行设计审查。适用于功能开发阶段的前端实现。
-argument-hint: '<feature-id>'
+argument-hint: '<feature-id> [slice]'
+arguments:
+  - feature_id
+  - slice
+disable-model-invocation: true
 skills:
   - interface-design
   - webapp-testing
@@ -9,7 +13,7 @@ skills:
 
 # Feature Frontend：前端实现
 
-当前功能：`$ARGUMENTS` 中的 feature-id
+当前功能：$feature_id
 
 ## 目标
 

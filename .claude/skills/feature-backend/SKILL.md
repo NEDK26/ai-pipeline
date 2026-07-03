@@ -1,7 +1,11 @@
 ---
 name: feature-backend
 description: 基于已通过需求评审的功能规格包，实现后端领域逻辑、接口、数据访问、权限、事务、审计与自动化测试。适用于 Spring Boot、MyBatis-Plus、MySQL 类企业后台项目。
-argument-hint: '<feature-id> [implementation-scope]'
+argument-hint: '<feature-id> [slice]'
+arguments:
+  - feature_id
+  - slice
+disable-model-invocation: true
 skills:
   - superpowers:test-driven-development
   - superpowers:verification-before-completion
@@ -11,7 +15,8 @@ skills:
 
 # Feature Backend：后端功能交付
 
-当前输入：$ARGUMENTS
+当前功能：$feature_id
+实现范围：$slice
 
 ## 目标
 

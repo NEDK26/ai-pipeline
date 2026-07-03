@@ -2,12 +2,16 @@
 name: feature-discovery
 description: 将已澄清的产品需求整理为可交付给开发循环的功能规格包。仅在完成需求澄清或已有充分的需求决策与项目文档时使用。不会编写业务代码。
 argument-hint: '<feature-id> "<feature-name>"'
+arguments:
+  - feature_id
+  - feature_name
+disable-model-invocation: true
 ---
 
 # Feature Discovery：开发就绪规格包
 
-当前功能编号：`$ARGUMENTS` 中的 feature-id
-当前功能名称：`$ARGUMENTS` 中的 feature-name
+当前功能编号：$feature_id
+当前功能名称：$feature_name
 
 ## 前置检查：需求澄清工具
 
