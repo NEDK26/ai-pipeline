@@ -3,3 +3,6 @@
 # Un-ignore only what should be tracked
 !.gitignore
 !.claude/
+!/docs/
+# Re-ignore files with actual secrets
+docs/project-reference.md

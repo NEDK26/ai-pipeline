@@ -1,6 +1,8 @@
 # 项目参考
 
 > 由 `.claude/CLAUDE.md` 引用。项目结构、技术栈、业务约束、编码规范。
+>
+> 复制此模板为 `project-reference.md` 并填入实际值。
 
 ## 项目结构
 
@@ -8,19 +10,19 @@
 
 | Project | Path | Stack | Own CLAUDE.md |
 |---------|------|-------|:---:|
-| Backend | `RSP/exbot-sys` | Spring Boot 3.4 + Java 17 + MyBatis Plus, port 8080 | Y |
-| Admin Frontend | `RSP/rsp-vue` | Vue 3 + Vite 5 + Element Plus 2.9 + TS + Pinia + UnoCSS, pnpm | N |
+| Backend | `<backend-path>` | Spring Boot 3.4 + Java 17 + MyBatis Plus, port 8080 | Y |
+| Admin Frontend | `<frontend-path>` | Vue 3 + Vite 5 + Element Plus 2.9 + TS + Pinia + UnoCSS, pnpm | N |
 | MedicalDeliveryRobot | `MedicalDeliveryRobot/` | Kotlin + AGP 8.13 + Kotlin 2.3, Min SDK 28, arm64-v8a, Pudu EX300 | Y |
 | MedicalDeliveryTablet | `MedicalDeliveryTablet/` | Kotlin + AGP 8.13, landscape, Paho MQTT + Retrofit | Y |
 | SmartFoodDelivery | `SmartFoodDelivery/` | Kotlin + Clean Arch, AGP 8.13 + Kotlin 2.3, arm64-v8a | Y |
 | HardwareDebugTool | `HardwareDebugTool/` | Kotlin + Java, UART/Chassis/MQTT low-level ref, do NOT refactor | Y |
 | MedicalDelivery (docs) | `MedicalDelivery/` | Markdown docs + planning hub + mock simulator (WIP) | Y |
 
-**中间件**: MySQL `47.110.49.110:3306` (exbot_sys_test) exbot:Bot123!@# | Redis `47.110.49.110:6379` db1 bot123!@# | MQTT `47.110.49.110:1883` admin:wangfei123
+**中间件**: MySQL `<db-host>:3306` (`<db-name>`) `<db-user>:<db-password>` | Redis `<redis-host>:6379` db1 `<redis-password>` | MQTT `<mqtt-host>:1883` `<mqtt-user>:<mqtt-password>`
 
 **MCP**: MySQL MCP in `.mcp.json`. 所有 SQL 操作通过 MCP 工具，禁止裸连接。
 
-**关键文档**: `RSP/exbot-sys/sql/` (init SQL, 命名: `{feature}_init.sql`) | `MedicalDelivery/` (需求、详细设计、API指南、bug记录) | `docs/` (系统使用 + 模块设计)
+**关键文档**: `<backend-path>/sql/` (init SQL, 命名: `{feature}_init.sql`) | `MedicalDelivery/` (需求、详细设计、API指南、bug记录) | `docs/` (系统使用 + 模块设计)
 
 ## 架构与技术栈约束
 
@@ -34,9 +36,9 @@
 | Deps | 优先用已有 utils/Managers | 重复造工具类 |
 
 **构建命令**:
-- Backend: `cd RSP/exbot-sys && mvn clean install -DskipTests` (mvn: `C:/Users/xiaoh/apache-maven-3.9.9/bin/mvn.cmd`)
+- Backend: `cd <backend-path> && mvn clean install -DskipTests` (mvn: `<path-to-maven>/bin/mvn.cmd`)
 - Android: `./gradlew assembleDebug` (从项目目录)
-- Frontend: `cd RSP/rsp-vue && pnpm ts:check`
+- Frontend: `cd <frontend-path> && pnpm ts:check`
 
 ## 编码规范
 
@@ -77,8 +79,8 @@
 - `syncPassword()` 是空桩。密码在任务派发时下发。
 
 **Robot对接**:
-- 华睿 AMR: MQTT通信, 见 `RSP/exbot-sys/华睿AMR接口整合计划.md`
-- 翼菲 RCS: HTTP RESTful API + MD5签名, 见 `RSP/exbot-sys/翼菲RCS接口对接计划.md`
+- 华睿 AMR: MQTT通信, 见 `<backend-path>/华睿AMR接口整合计划.md`
+- 翼菲 RCS: HTTP RESTful API + MD5签名, 见 `<backend-path>/翼菲RCS接口对接计划.md`
 
 **安全**: Tablet tokens UUID+24h expiry+ConcurrentHashMap。Password: task-level → dept config fallback。所有凭据在 .mcp.json/config，禁止写死在代码中。
 
@@ -86,9 +88,9 @@
 
 | 交付物 | 验证 |
 |-------------|-------------|
-| Backend | `cd RSP/exbot-sys && mvn clean install -DskipTests` 通过 |
+| Backend | `cd <backend-path> && mvn clean install -DskipTests` 通过 |
 | Android (任意) | `./gradlew assembleDebug` 通过, APK: `app/build/outputs/apk/debug/app-debug.apk` |
-| Frontend | `cd RSP/rsp-vue && pnpm ts:check` 通过 |
+| Frontend | `cd <frontend-path> && pnpm ts:check` 通过 |
 | Bug fix | 更新 `MedicalDelivery/手动测试bug记录.md`: 现象/复现/根因/修复/时间 |
 | New module | 更新子项目 CLAUDE.md code index |
 | API change | 更新 `MedicalDelivery/医疗标本配送模块使用指南.md` |
