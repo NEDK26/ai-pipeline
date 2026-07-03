@@ -1,5 +1,4 @@
 ---
-
 name: feature-verification
 description: 对指定功能执行需求可追溯验证、后端接口验证、前端交互验证、浏览器端到端测试、截图证据收集和发布质量门禁判定。适用于功能开发完成后的联调、回归和发布前验收。
 argument-hint: '<feature-id> [scope]'

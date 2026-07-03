@@ -1,5 +1,4 @@
 ---
-
 name: feature-backend
 description: 基于已通过需求评审的功能规格包，实现后端领域逻辑、接口、数据访问、权限、事务、审计与自动化测试。适用于 Spring Boot、MyBatis-Plus、MySQL 类企业后台项目。
 argument-hint: '<feature-id> [implementation-scope]'
