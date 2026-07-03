@@ -33,12 +33,11 @@ disable-model-invocation: true
 6. 当前 Feature 相关的已有代码、接口、数据库表、枚举和测试
 7. 项目已有构建、测试、迁移和代码规范配置
 
-进入 Loop B 条件（三项全部满足）：
-1. `docs/features/<feature-id>/handoff.md` 存在；
-2. `docs/features/<feature-id>/reviews/requirements-review.md` 存在；
-3. 审查结论不是 `Blocked`。
+进入 Loop B 条件：`docs/features/<feature-id>/handoff.md` Metadata `Status` 为 `Ready` 或 `Ready with Risks`。
 
-不满足任一条件 → 不写业务代码，列出阻塞项，建议回流到 `feature-discovery` 或 `requirements-reviewer`。
+（`Status` 由 `requirements-reviewer` 审查后写入。`Drafted` / `Pending Review` / `Blocked` 状态不允许开始 Loop B。）
+
+若不满足 → 不写业务代码，列出阻塞项，建议回流到 `feature-discovery` 或 `requirements-reviewer`。
 
 ## 严格边界
 
@@ -48,11 +47,14 @@ disable-model-invocation: true
 
 **API 契约修改权限：**
 
-| 契约状态 | 后端权限 |
-|----------|----------|
-| **Draft** | 可直接修改 `api-contract.md`，更新 Contract Version，通知前端 |
-| **Frozen** | 禁止静默修改。须创建 `docs/features/$feature_id/contract-changes/CCR-XXX.md`（模板见 `templates/contract-change-request.md`），说明影响页面、字段、错误码、验收用例，前后端共同确认后更新契约并标记 CCR 为 Applied |
-| **Superseded** | 指向新契约版本，不修改已归档版本 |
+- 当 `api-contract.md` Metadata `Status = Draft`：可更新契约，递增 Contract Version。
+- 当 `Status = Frozen`：**不得直接修改 `api-contract.md`**。如实现发现契约问题：
+  1. 创建 `docs/features/$feature_id/contract-changes/CCR-<feature-id>-<序号>.md`（模板见 `templates/contract-change-request.md`）；
+  2. 说明变更原因、影响接口、影响前端页面、影响验收用例；
+  3. 将状态标记为 `Contract Mismatch`；
+  4. 经需求/架构确认后，生成新版本契约；
+  5. 前后端同步后才继续。
+- 当 `Status = Superseded`：指向新契约版本，不修改已归档版本。
 
 冻结后单方面改契约 → 阻塞项，`backend-reviewer` 判定为 Changes Required。
 

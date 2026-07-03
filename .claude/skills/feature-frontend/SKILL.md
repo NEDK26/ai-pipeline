@@ -18,10 +18,9 @@ disable-model-invocation: true
 
 ## 前置条件
 
-进入 Loop B 条件（三项全部满足）：
-1. `docs/features/$feature_id/handoff.md` 存在；
-2. `docs/features/$feature_id/reviews/requirements-review.md` 存在；
-3. 审查结论不是 `Blocked`。
+进入 Loop B 条件：`docs/features/$feature_id/handoff.md` Metadata `Status` 为 `Ready` 或 `Ready with Risks`。
+
+（`Status` 由 `requirements-reviewer` 审查后写入。`Drafted` / `Pending Review` / `Blocked` 状态不允许开始 Loop B。）
 
 **契约状态检查：** 读取 `docs/features/$feature_id/api-contract.md` 顶部 Metadata：
 

@@ -53,6 +53,8 @@ tools: Read, Glob, Grep, Write
 
 该文件使用模板 `templates/review.md` 的 metadata 头部结构，后接下方输出格式的审查维度详细内容。
 
+**审查后必须同步更新 handoff.md：** 将 `docs/features/$feature_id/handoff.md` Metadata 中的 `Status` 更新为审查结论（`Ready` / `Ready with Risks` / `Blocked`）。这是 Loop B 入口判断的唯一依据。
+
 ## 输出格式
 
 ```markdown

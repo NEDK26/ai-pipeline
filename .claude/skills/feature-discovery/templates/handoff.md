@@ -5,14 +5,17 @@
 - **Feature ID**: $feature_id
 - **Spec Version**: v0.1
 - **API Contract Version**: v0.1
-- **Status**: Drafted / Pending Review / Blocked
+- **Status**: Drafted / Pending Review / Ready / Ready with Risks / Blocked
+  - `Drafted` / `Pending Review` / `Blocked` → 由 `feature-discovery` 设置
+  - `Ready` / `Ready with Risks` → 由 `requirements-reviewer` 审查后更新
 - **Scope Freeze**: Yes / No
 - **Requirements Review**: docs/features/$feature_id/reviews/requirements-review.md
 - **Accepted Risks**:
 - **Last Updated**: YYYY-MM-DD
 
 ## 1. 当前结论
-- Drafted / Pending Review / Blocked；
+- Drafted / Pending Review / Blocked（由 feature-discovery 设置）；
+- Ready / Ready with Risks（由 requirements-reviewer 审查后更新）；
 - 结论理由；
 - 最后更新日期。
 

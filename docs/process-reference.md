@@ -51,15 +51,11 @@ docs/features/<feature-id>/
 └─ handoff.md
 ```
 
-进入 Loop B 条件（三项全部满足）：
+进入 Loop B 条件：`handoff.md` Metadata `Status` 为 `Ready` 或 `Ready with Risks`。
 
-1. `handoff.md` 存在；
-2. `reviews/requirements-review.md` 存在；
-3. 审查结论不是 `Blocked`。
+`feature-discovery` 将 `Status` 设置为 `Drafted` / `Pending Review` / `Blocked`。随后 `requirements-reviewer` 审查规格包并更新 `Status` 为 `Ready` / `Ready with Risks` / `Blocked`。只有 Agent 拥有 `Ready` 判定权。
 
-`feature-discovery` 输出 `Drafted` 或 `Pending Review` 后，由 `requirements-reviewer` 独立审查并判定 `Ready` / `Ready with Risks` / `Blocked`。只有 Agent 拥有 `Ready` 状态的所有权。
-
-若审查结论为 `Blocked`：
+若 `Status` 为 `Blocked`：
 
 - 不编写关键业务代码；
 - 不自行猜测业务规则；
