@@ -1,5 +1,18 @@
 # $feature_id：API 契约
 
+## API 契约权威来源
+
+**开发设计阶段**：
+- 本文件（`docs/features/<feature-id>/api-contract.md`）是唯一设计契约。
+
+**后端实现完成后**：
+- Apifox 必须与本契约同步（引入 springdoc-openapi 后通过 `/v3/api-docs` 自动同步）。
+- 若 Apifox 文档与 api-contract.md 不一致 → 标记为 Contract Mismatch。
+- 前端不得依据未同步的接口字段自行猜测。
+- 未更新 Apifox 文档的接口变更不视为完成。
+
+---
+
 > 后端按此契约实现接口，前端按此契约用 mock 或真实接口开发，验证用验收用例检查前后端行为一致性。
 
 ## 接口清单
