@@ -69,7 +69,7 @@ tools: Read, Glob, Grep, Write, Edit
 
 `docs/features/<feature-id>/reviews/release-review.md`
 
-该文件使用模板 `templates/review.md` 的 metadata 头部结构，后接下方输出格式的审查维度详细内容。
+该文件使用模板 `.claude/skills/feature-discovery/templates/review.md` 的 metadata 头部结构，后接下方输出格式的审查维度详细内容。
 
 ## 输出格式
 
