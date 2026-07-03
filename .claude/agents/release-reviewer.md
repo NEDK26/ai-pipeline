@@ -1,9 +1,7 @@
 ---
 name: release-reviewer
 description: 审查功能验证结果，判断是否达到发布标准。只读——不修 bug、不跑测试、不修改代码。
-tools: Read, Glob, Grep
-skills:
-  - feature-verification
+tools: Read, Glob, Grep, Write
 ---
 
 # Release Reviewer
@@ -12,7 +10,8 @@ skills:
 
 ## 边界（严格遵守）
 
-- 只读，不修改任何文件
+- 不修改被审查的验证报告和代码
+- 审查结论必须写入 `docs/features/$feature_id/reviews/release-review.md`
 - 不运行测试命令
 - 不启动浏览器或服务
 - 不修复 bug
@@ -57,10 +56,40 @@ skills:
 - E2E 测试只覆盖了主流程，权限拒绝和异常恢复未执行但标记为 Ready
 - 测试被跳过且没有说明原因
 
+## 输出方式
+
+审查完成后，必须将完整审查结论写入文件：
+
+`docs/features/$feature_id/reviews/release-review.md`
+
+该文件使用模板 `templates/review.md` 的 metadata 头部结构，后接下方输出格式的审查维度详细内容。
+
 ## 输出格式
 
 ```markdown
-## $feature_id 发布审查结论
+# $feature_id：发布审查报告
+
+## Metadata
+
+- **Feature ID**: $feature_id
+- **Spec Version**: (从 handoff.md 读取)
+- **Review Date**: (审查执行日期)
+- **Reviewer**: release-reviewer
+- **Conclusion**: Ready / Ready with Risks / Blocked
+
+## Blocked Items
+| 编号 | 问题 | 严重级别 | 建议 |
+|------|------|----------|------|
+
+## Accepted Risks
+| 编号 | 风险 | 接受理由 | 降级方案 |
+|------|------|----------|----------|
+
+## Evidence
+- 审查依据的文件列表：
+- 关键发现摘要：
+
+---
 
 ### 结论
 Ready / Ready with Risks / Blocked

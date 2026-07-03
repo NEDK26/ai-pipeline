@@ -9,6 +9,9 @@
 ## 严重级别
 <!-- P0-阻塞 / P1-高 / P2-中 / P3-低 -->
 
+## 分类
+<!-- Product Gap / Backend Defect / Frontend Defect / Contract Mismatch / Test Defect / Environment Issue / Visual Review Finding -->
+
 ## 前置条件
 
 ## 复现步骤
@@ -23,3 +26,4 @@
 ## 证据
 
 ## 建议回流
+<!-- 回流到的 Feature Skill 或处理阶段 -->

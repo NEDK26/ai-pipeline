@@ -80,7 +80,11 @@ docs/features/$feature_id/
 ├─ api-contract.md          ← 模板: templates/api-contract.md
 ├─ acceptance-tests.md      ← 模板: templates/acceptance-tests.md
 ├─ architecture-impact.md   ← 模板: templates/architecture-impact.md
-└─ handoff.md               ← 模板: templates/handoff.md
+├─ handoff.md               ← 模板: templates/handoff.md
+└─ reviews/                 ← 模板: templates/review.md
+   ├─ requirements-review.md
+   ├─ backend-review.md
+   └─ release-review.md
 ```
 
 已有文件时先阅读保留有效内容，最小化更新。不覆盖人工已确认内容。新旧结论冲突时标注冲突写入 handoff.md "待确认冲突"区域。
@@ -102,10 +106,10 @@ docs/features/$feature_id/
 1. 是否把猜测写成事实
 2. 是否存在无法测试的业务规则
 3. 是否存在没有验收用例的用户故事
-4. 是否存在没有页面或接口落点的关键流程
-5. 是否存在没有权限定义的高风险操作
-6. 是否存在没有失败处理的状态转换
-7. 是否存在没有影响范围说明的发布、回滚、删除或强制操作
+4. 审查报告是否已写入 `reviews/` 目录（由 requirements-reviewer 完成）
+5. 是否存在没有页面或接口落点的关键流程
+6. 是否存在没有权限定义的高风险操作
+7. 是否存在没有失败处理的状态转换
 8. 是否存在没有来源或口径的数据指标
 9. 是否存在被遗漏的架构约束
 10. Loop B 是否仍需要猜测关键业务决策

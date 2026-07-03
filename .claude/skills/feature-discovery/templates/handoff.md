@@ -1,5 +1,16 @@
 # $feature_id：开发交接说明
 
+## Feature Metadata
+
+- **Feature ID**: $feature_id
+- **Spec Version**: v0.1
+- **API Contract Version**: v0.1
+- **Status**: Ready / Ready with Risks / Blocked
+- **Scope Freeze**: Yes / No
+- **Requirements Review**: docs/features/$feature_id/reviews/requirements-review.md
+- **Accepted Risks**:
+- **Last Updated**: YYYY-MM-DD
+
 ## 1. 当前结论
 - Ready / Ready with Risks / Blocked；
 - 结论理由；
