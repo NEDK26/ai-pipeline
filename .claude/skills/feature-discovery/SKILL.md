@@ -10,8 +10,8 @@ disable-model-invocation: true
 
 # Feature Discovery：开发就绪规格包
 
-当前功能编号：<feature-id>
-当前功能名称：<feature-name>
+当前功能编号：$feature_id
+当前功能名称：$feature_name
 
 ## 前置检查：需求澄清工具
 
@@ -73,7 +73,7 @@ disable-model-invocation: true
 ### 第二步：创建功能目录
 
 ```
-docs/features/<feature-id>/
+docs/features/$feature_id/
 ├─ brief.md                 ← 模板: templates/brief.md
 ├─ spec.md                  ← 模板: templates/spec.md
 ├─ prototype.md             ← 模板: templates/prototype.md
@@ -118,7 +118,7 @@ docs/features/<feature-id>/
 ## 最终回复格式
 
 ```markdown
-## <feature-id>：规格包完成情况
+## $feature_id：规格包完成情况
 
 ### 结论
 Drafted / Pending Review / Blocked

@@ -10,8 +10,8 @@ disable-model-invocation: true
 
 # Feature Backend：后端功能交付
 
-当前功能：<feature-id>
-实现范围：<slice>
+当前功能：$feature_id
+实现范围：$slice
 
 ## 目标
 
@@ -26,16 +26,16 @@ disable-model-invocation: true
 
 开始前必须读取：
 1. `.claude/CLAUDE.md`
-2. `docs/features/<feature-id>/spec.md`
-3. `docs/features/<feature-id>/acceptance-tests.md`
-4. `docs/features/<feature-id>/architecture-impact.md`
-5. `docs/features/<feature-id>/handoff.md`
+2. `docs/features/$feature_id/spec.md`
+3. `docs/features/$feature_id/acceptance-tests.md`
+4. `docs/features/$feature_id/architecture-impact.md`
+5. `docs/features/$feature_id/handoff.md`
 6. 当前 Feature 相关的已有代码、接口、数据库表、枚举和测试
 7. 项目已有构建、测试、迁移和代码规范配置
 
 ## Loop B 门禁：读取 handoff.md Status
 
-读取 `docs/features/<feature-id>/handoff.md` Metadata `Status`：
+读取 `docs/features/$feature_id/handoff.md` Metadata `Status`：
 
 - **`Ready`**：允许进入 Loop B。
 - **`Ready with Risks`**：允许进入 Loop B。必须在最终交付输出中重复列出 `handoff.md` Metadata `Accepted Risks`。
@@ -53,7 +53,7 @@ disable-model-invocation: true
 
 - 当 `api-contract.md` Metadata `Status = Draft`：可更新契约，递增 Contract Version。
 - 当 `Status = Frozen`：**不得直接修改 `api-contract.md`**。如实现发现契约问题：
-  1. 创建 `docs/features/<feature-id>/contract-changes/CCR-<feature-id>-<序号>.md`（模板见 `templates/contract-change-request.md`）；
+  1. 创建 `docs/features/$feature_id/contract-changes/CCR-$feature_id-<序号>.md`（模板见 `templates/contract-change-request.md`）；
   2. 说明变更原因、影响接口、影响前端页面、影响验收用例；
   3. 将状态标记为 `Contract Mismatch`；
   4. 经需求/架构确认后，生成新版本契约；
@@ -64,15 +64,15 @@ disable-model-invocation: true
 
 ## 第一步：建立实现映射
 
-创建或更新 `docs/features/<feature-id>/backend-handoff.md`，填充 `templates/backend-handoff.md` 中的"规格→实现映射"表。
+创建或更新 `docs/features/$feature_id/backend-handoff.md`，填充 `templates/backend-handoff.md` 中的"规格→实现映射"表。
 每个重要业务规则必须有明确后端落点。禁止出现"前端已限制，因此后端无需校验"。
 
 ## 第二步：检查契约状态
 
-读取 `docs/features/<feature-id>/api-contract.md` 顶部 Metadata，确认 `Status` 字段：
+读取 `docs/features/$feature_id/api-contract.md` 顶部 Metadata，确认 `Status` 字段：
 
 - **Draft**：继续第三步，可以定义和调整 API 契约。
-- **Frozen**：按现有契约实现。如需变更 → 创建 `docs/features/<feature-id>/contract-changes/CCR-<feature-id>-<序号>.md`，填写影响分析，前后端确认后更新契约。
+- **Frozen**：按现有契约实现。如需变更 → 创建 `docs/features/$feature_id/contract-changes/CCR-$feature_id-<序号>.md`，填写影响分析，前后端确认后更新契约。
 - **Superseded**：定位新契约版本，按新版本执行。
 
 ## 第三步：先定义后端设计
@@ -128,7 +128,7 @@ disable-model-invocation: true
 
 完成后只输出：
 
-## <feature-id>：后端交付结果
+## $feature_id：后端交付结果
 
 ### 实现范围
 - 新增或修改的领域对象：

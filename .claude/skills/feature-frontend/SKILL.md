@@ -10,15 +10,16 @@ disable-model-invocation: true
 
 # Feature Frontend：前端实现
 
-当前功能：<feature-id>
+当前功能：$feature_id
+当前实现切片：$slice
 
 ## 目标
 
-读取 `docs/features/<feature-id>/` 规格包，实现符合设计规范的前端页面。
+读取 `docs/features/$feature_id/` 规格包，实现符合设计规范的前端页面。
 
 ## Loop B 门禁：读取 handoff.md Status
 
-读取 `docs/features/<feature-id>/handoff.md` Metadata `Status`：
+读取 `docs/features/$feature_id/handoff.md` Metadata `Status`：
 
 - **`Ready`**：允许进入 Loop B。
 - **`Ready with Risks`**：允许进入 Loop B。必须在最终交付输出中重复列出 `handoff.md` Metadata `Accepted Risks`。
@@ -26,7 +27,7 @@ disable-model-invocation: true
 
 （`Status` 由 `requirements-reviewer` 审查后写入，是 Loop B 入口的唯一依据。）
 
-**契约状态检查：** 读取 `docs/features/<feature-id>/api-contract.md` 顶部 Metadata：
+**契约状态检查：** 读取 `docs/features/$feature_id/api-contract.md` 顶部 Metadata：
 
 | Status | 前端行为 |
 |--------|----------|
@@ -54,12 +55,12 @@ disable-model-invocation: true
 
 1. `.claude/CLAUDE.md` — 技术栈约束、构建命令
 2. `.claude/rules/frontend-ui.md` — 前端 UI 规则
-3. `docs/features/<feature-id>/brief.md` — 背景和目标
-4. `docs/features/<feature-id>/spec.md` — 业务规则和权限
-5. `docs/features/<feature-id>/prototype.md` — 页面清单、交互路径、状态
-6. `docs/features/<feature-id>/api-contract.md` — 接口契约
-7. `docs/features/<feature-id>/acceptance-tests.md` — 验收条件
-8. `docs/features/<feature-id>/handoff.md` — 开发任务拆分
+3. `docs/features/$feature_id/brief.md` — 背景和目标
+4. `docs/features/$feature_id/spec.md` — 业务规则和权限
+5. `docs/features/$feature_id/prototype.md` — 页面清单、交互路径、状态
+6. `docs/features/$feature_id/api-contract.md` — 接口契约
+7. `docs/features/$feature_id/acceptance-tests.md` — 验收条件
+8. `docs/features/$feature_id/handoff.md` — 开发任务拆分
 
 ## 第二步：设计审查
 
